@@ -93,6 +93,35 @@ def plotHistByCond(startDate, endDate, condition):
 
     return plot
 
+
+def plotLineByDate(startDate, endDate, region = 'all'):
+    """
+    Plots the line chart of regional cases over the period of specified time range.
+    The lines are colored according to the region. The default starts from
+    '2020-01-29' date. 
+
+    Parameters
+    ----------
+    startDate : string
+                the start date of the period. The first accepted value is 
+                set to'2020-01-29'.
+    endDate   : string
+                the end date of the period. Cannot take on date that comes before
+                the last record available (one day prior the day of using the package). 
+    region : string 
+             specify the region for the line to be plotted. Default are all regions. 
+
+    Returns
+    -------
+    plot : altair.Chart object
+           An altair plot object displaying line chart
+
+    Examples
+    --------
+    >>> bccovideda.plotLineByDate("2021-01-01", "2021-12-31")
+    >>> bccovideda.plotLineByDate("2021-01-01", "2021-12-31", region = 'HA')
+    """
+
 def showSummaryStat(startDate, endDate):
     """
     A function to show summary statistics for the COVID cases in BC
@@ -179,3 +208,31 @@ def showSummaryStat(startDate, endDate):
     )
 
     return summary_df
+
+def plotLineByDate(startDate, endDate, region='all'):
+    """
+    Plots the line chart of regional cases over the period of specified time range.
+    The lines are colored according to the region. The default starts from
+    '2020-01-29' date. 
+
+    Parameters
+    ----------
+    startDate : string
+                the start date of the period. The first accepted value is 
+                '2020-01-29'.
+    endDate   : string
+                the end date of the period. Cannot take on date that comes before
+                the last record available (one day prior the day of using the package). 
+    region : string 
+             specify the region for the line to be plotted. Default is all regions. 
+
+    Returns
+    -------
+    plot : altair.Chart object
+           An altair plot object displaying line chart
+
+    Examples
+    --------
+    >>> bccovideda.plotLineByDate("2021-01-01", "2021-12-31")
+    >>> bccovideda.plotLineByDate("2021-01-01", "2021-12-31", region = 'HA')
+    """
