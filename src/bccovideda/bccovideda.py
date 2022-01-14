@@ -92,3 +92,90 @@ def plotHistByCond(startDate, endDate, condition):
             x=alt.X("count()", title="Number of Cases"))
 
     return plot
+
+def showSummaryStat(startDate, endDate):
+    """
+    A function to show summary statistics for the COVID cases in BC
+    for the period specified in the parameter
+
+    Parameters
+    ----------
+    param1 : startDate (str: YYYY-MM-DD)
+        Start Date of the period (inclusive)
+    param2 : endDate (str: YYYY-MM-DD)
+        End Date of the period (inclusive)
+
+    Returns
+    -------
+    pandas.DataFrame
+        Data frame containing summary statistics with the followings:
+        total_cases_count, latest_date, latest_daily_cases_count, 
+        max_date, max_daily_cases_count, min_date, min_daily_cases_count, 
+        max_age_group, max_age_group_count, min_age_group, min_age_group_count,
+        max_region, max_region_count, min_region, min_region_count,
+
+
+    Examples
+    -------
+    >>> showSummaryStat("2022-01-01", "2022-01-13")
+
+    """
+
+    df = getData()
+    mask = (df["Reported_Date"] >= startDate) & (df["Reported_Date"] <= endDate)
+    df = df.loc[mask]
+
+    # total_cases_count
+    total = len(df)
+
+    # count by date
+    count_df = df["Reported_Date"].value_counts()
+    # latest_date, latest_daily_cases_count
+    latest_date_count = count_df.loc[endDate]
+    # max_date, max_daily_cases_count
+    max_date = count_df.idxmax()
+    max_daily_cases_count = count_df.max()
+    # min_date, min_daily_cases_count
+    min_date = count_df.idxmin()
+    min_daily_cases_count = count_df.min()
+
+    # count by age group
+    age_df = df["Age_Group"].value_counts()
+    # max_age_group, max_age_group_count
+    max_age_group = age_df.idxmax()
+    max_age_group_count = age_df.max()
+    # min_age_group, min_age_group_count
+    min_age_group = age_df.idxmin()
+    min_age_group_count = age_df.min()
+
+    # count by region
+    region_df = df["HA"].value_counts()
+    # max_region, max_region_count
+    max_region = region_df.idxmax()
+    max_region_count = region_df.max()
+
+    # min_region, min_region_count,
+    min_region = region_df.idxmin()
+    min_region_count = region_df.min()
+
+    summary_df = pd.DataFrame(
+        {
+            "total_cases_count": [total],
+            "latest_date": [endDate],
+            "latest_daily_cases_count": [latest_date_count],
+            "max_date": [max_date],
+            "max_daily_cases_count": [max_daily_cases_count],
+            "min_date": [min_date],
+            "min_daily_cases_count": [min_daily_cases_count],
+            "max_age_group": [max_age_group],
+            "max_age_group_count": [max_age_group_count],
+            "min_age_group": [min_age_group],
+            "min_age_group_count": [min_age_group_count],
+            "max_region": [max_region],
+            "max_region_count": [max_region_count],
+            "min_region": [min_region],
+            "min_region_count": [min_region_count],
+        }
+    )
+
+    return summary_df
