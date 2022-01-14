@@ -209,7 +209,7 @@ def showSummaryStat(startDate, endDate):
 
     return summary_df
 
-def plotLineByDate(startDate, endDate, region = 'all'):
+def plotLineByDate(startDate, endDate, region='all'):
     """
     Plots the line chart of regional cases over the period of specified time range.
     The lines are colored according to the region. The default starts from
@@ -219,12 +219,12 @@ def plotLineByDate(startDate, endDate, region = 'all'):
     ----------
     startDate : string
                 the start date of the period. The first accepted value is 
-                set to'2020-01-29'.
+                '2020-01-29'.
     endDate   : string
                 the end date of the period. Cannot take on date that comes before
                 the last record available (one day prior the day of using the package). 
     region : string 
-             specify the region for the line to be plotted. Default are all regions. 
+             specify the region for the line to be plotted. Default is all regions. 
 
     Returns
     -------
