@@ -2,6 +2,7 @@
 import requests
 import os
 import pandas as pd
+import altair as alt
 
 
 def getData(url="http://www.bccdc.ca/Health-Info-Site/Documents/BCCDC_COVID19_Dashboard_Case_Details.csv", out_folder="data/raw"):
@@ -66,3 +67,28 @@ def plotHistByCond(startDate, endDate, condition):
     >>> bccovideda.plotHistByCond("2021-01-01", "2021-12-31", Age)
     """
 
+    covid = getData()
+
+    mask = (covid["Reported_Date"] > startDate) & (covid["Reported_Date"] <= endDate)
+    temp = covid.loc[mask]
+
+    age_group_label = [
+        '90+', '80-89', '70-79', '60-69', '50-59', '40-49', '30-39',
+        '20-29', '10-19', '<10'
+    ]
+
+    region_label = [
+        'Fraser', 'Vancouver Coastal', 'Vancouver Island', 'Interior',
+        'Northern', 'Out of Canada'
+    ]
+
+    if condition == "Age":
+        plot = alt.Chart(temp, title="Number of Cases by Age Group").mark_bar().encode(
+            y=alt.Y("Age_Group", sort=age_group_label, title="Age Group"),
+            x=alt.X("count()", title="Number of Cases"))
+    if condition == "Region":
+        plot = alt.Chart(temp, title="Number of Cases by Region").mark_bar().encode(
+            y=alt.Y("HA", sort=region_label, title="Region"),
+            x=alt.X("count()", title="Number of Cases"))
+
+    return plot
