@@ -51,7 +51,6 @@ def showSummaryStat(startDate, endDate):
         max_age_group, max_age_group_count, min_age_group, min_age_group_count,
         max_region, max_region_count, min_region, min_region_count,
 
-
     Examples
     -------
     >>> showSummaryStat("2022-01-01", "2022-01-13")
