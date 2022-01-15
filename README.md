@@ -27,7 +27,7 @@ $ pip install bccovideda
   - This function computes summary statistics from the available case-specific parameters, such as age-related and regional aggregate metrics. It returns a dataframe listing key identified summary statistics specified per the time interval queried. 
 
 - `plotLineByDate()`
-  - This function returns a time series plot of case counts, based on parameters and grouping selected by the user, per the time interval queried.
+  - This function returns a line chart plot of daily case counts, based on parameters and grouping selected by the user, per the time interval queried.
 
 - `plotHistByCond()`
   - This function returns a histogram plot based on parameters and grouping selected by the user, per the time interval queried, allowing for on-demand exploratory data analysis. 
@@ -47,6 +47,8 @@ Given the relatively adequate accessibility of latest aggregate COVID-19 data co
 
     -   pandas==1.3.5
     -   requests==2.27.1
+    -   altair==4.2.0
+    -   altair-saver==0.5.0
 
 ## Documentation
 
