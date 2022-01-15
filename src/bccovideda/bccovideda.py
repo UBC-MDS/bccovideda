@@ -211,9 +211,10 @@ def showSummaryStat(startDate, endDate):
 
 def plotLineByDate(startDate, endDate, region='all'):
     """
-    Plots the line chart of regional cases over the period of specified time range.
+    Plots the line chart of regional cases over the period of specified time range
+    by taking strings as startDate and endDate (format: YYYY-MM-DD).
     The lines are colored according to the region. The default starts from
-    '2020-01-29' date. 
+    '2020-01-29' date, and ends one day prior the day the package was downloaded. 
 
     Parameters
     ----------
@@ -222,7 +223,8 @@ def plotLineByDate(startDate, endDate, region='all'):
                 '2020-01-29'.
     endDate   : string
                 the end date of the period. Cannot take on date that comes before
-                the last record available (one day prior the day of using the package). 
+                the last record available (one day prior the day of downloading
+                the package). 
     region : string 
              specify the region for the line to be plotted. Default is all regions. 
 
@@ -234,5 +236,5 @@ def plotLineByDate(startDate, endDate, region='all'):
     Examples
     --------
     >>> bccovideda.plotLineByDate("2021-01-01", "2021-12-31")
-    >>> bccovideda.plotLineByDate("2021-01-01", "2021-12-31", region = 'HA')
+    >>> bccovideda.plotLineByDate("2021-01-01", "2021-12-31", region = 'Fraser')
     """
