@@ -91,6 +91,14 @@ def plotLineByDate(startDate, endDate, region='all'):
     """
 
     covid = getData()
+
+       # check argument validity
+    if not(isinstance(startDate, str)):
+        raise TypeError('Invalid argument type: startDate must be a string.')
+    elif not(isinstance(endDate, str)):
+        raise TypeError('Invalid argument type: endDate must be a string.')
+    elif not(isinstance(region, list) or region == 'all'):
+        raise TypeError('Invalid argument type: region must be a list or have a value `"all"`.')
     
     # filter the data 
     if region == 'all':
