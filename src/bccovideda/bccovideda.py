@@ -118,6 +118,16 @@ def plotLineByDate(startDate, endDate, region='all'):
         raise ValueError('Invalid argument value: region cannot be an empty list')
         
     
+    # check the date format 
+    try:
+        datetime.datetime.strptime(startDate, '%Y-%m-%d')
+    except ValueError:
+        raise ValueError("Incorrect data format, should be YYYY-MM-DD")
+    try:
+        datetime.datetime.strptime(endDate, '%Y-%m-%d')
+    except ValueError:
+        raise ValueError("Incorrect data format, should be YYYY-MM-DD")
+    
     # filter the data 
     if region == 'all':
         mask = ((covid["Reported_Date"] > startDate) &
