@@ -103,7 +103,7 @@ def plotLineByDate(startDate, endDate, region='all'):
     # check arguments value     
     elif not(endDate <= covid.iloc[-1:, 0].values[0]):
         raise ValueError('Invalid argument value: endDate cannot be later ' \
-                         'than the day the package was installed.')
+                         'than the day the package is called.')
     elif not(startDate >= covid.iloc[0:, 0].values[0]):
         raise ValueError('Invalid argument value: startDate cannot be earlier ' \
                          'than the day the first case was recorded.')
