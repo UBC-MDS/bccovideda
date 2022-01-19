@@ -99,6 +99,24 @@ def plotLineByDate(startDate, endDate, region='all'):
         raise TypeError('Invalid argument type: endDate must be a string.')
     elif not(isinstance(region, list) or region == 'all'):
         raise TypeError('Invalid argument type: region must be a list or have a value `"all"`.')
+        
+    # check arguments value     
+    elif not(endDate <= covid.iloc[-1:, 0].values[0]):
+        raise ValueError('Invalid argument value: endDate cannot be later ' \
+                         'than the day the package was installed.')
+    elif not(startDate >= covid.iloc[0:, 0].values[0]):
+        raise ValueError('Invalid argument value: startDate cannot be earlier ' \
+                         'than the day the first case was recorded.')
+    elif not(startDate < endDate):
+        raise ValueError('Invalid argument value: endDate cannot be earlier ' \
+                         'than the startDate.')
+    elif not(set(region).issubset(set(pd.unique(covid['HA']))) or region == 'all'):
+        raise ValueError('Invalid argument value: region must be valid BC region - ' \
+                         'Either combination of `Fraser, Vancouver Coastal, Vancouver Island, ' \
+                         'Interior, Northern, Out of Canada` or `all`')
+    elif not(len(region) > 0):
+        raise ValueError('Invalid argument value: region cannot be an empty list')
+        
     
     # filter the data 
     if region == 'all':
