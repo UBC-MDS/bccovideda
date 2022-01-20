@@ -1,4 +1,5 @@
-from bccovideda.bccovideda import plot_line_by_date
+# from bccovideda.bccovideda import plot_line_by_date
+from bccovideda.plot_line_by_date import plot_line_by_date
 
 import pytest 
 import pandas as pd
@@ -87,8 +88,8 @@ def test_plot_attributes():
     assert str(type(plot_filter)) == "<class 'altair.vegalite.v4.api.Chart'>"
     assert plot_all.encoding.x.shorthand == 'Reported_Date', 'x_axis should be mapped to the x axis'
     assert plot_all.encoding.y.shorthand == 'count()', 'y_axis should be mapped to the y axis'
-    assert plot_all.encoding.color.shorthand == 'HA', 'color should be mapped to the color axis'
-    assert plot_filter.encoding.color.shorthand == 'HA', 'color should be mapped to the color axis'
+    assert plot_all.encoding.color.shorthand == 'HA', 'color filter should be mapped to the color axis'
+    assert plot_filter.encoding.color.shorthand == 'HA', 'color filter should be mapped to the color axis'
     assert plot_all.mark == 'line', 'mark should be a line'
     assert plot_filter.mark == 'line', 'mark should be a line'
 
