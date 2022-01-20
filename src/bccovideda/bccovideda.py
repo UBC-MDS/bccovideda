@@ -26,7 +26,7 @@ def get_data(url="http://www.bccdc.ca/Health-Info-Site/Documents/BCCDC_COVID19_D
 
     Examples
     --------
-    >>> getData()
+    >>> get_data()
     """
     if not os.path.exists(os.getcwd() + "/" + out_folder):
         os.makedirs(out_folder + "/")
