@@ -73,8 +73,7 @@ def test_date_format():
 
 def test_plot_attributes():
     """
-    Tests the plot_line_by_date function to make sure the passed date is of correct format
-    values are correct.
+    Tests the plot_line_by_date function to make sure the plot attributes are correct.
     Returns
     --------
     None
