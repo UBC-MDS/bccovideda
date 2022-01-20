@@ -38,8 +38,8 @@ def get_data(url="http://www.bccdc.ca/Health-Info-Site/Documents/BCCDC_COVID19_D
     csv_file.write(url_content)
     csv_file.close()
 
-    cases_df = pd.read_csv("data/raw/case_data.csv",
-                           parse_dates=["Reported_Date"])
+    cases_df = pd.read_csv("data/raw/case_data.csv", 
+                            parse_dates = ['Reported_Date'])
 
     return cases_df
 
@@ -74,7 +74,7 @@ def showSummaryStat(startDate, endDate):
     """
 
 
-def plotLineByDate(startDate, endDate, region='all'):
+def plot_line_by_date(startDate, endDate, region='all'):
     """
     Plots the line chart of regional Covid19 cases over the period specified by 
     startDate and endDate (format: YYYY-MM-DD). The default argument value 
@@ -105,7 +105,21 @@ def plotLineByDate(startDate, endDate, region='all'):
     >>> bccovideda.plotLineByDate("2021-01-01", "2021-12-31", region = ['Fraser'])
     """
 
-    covid = getData()
+    covid = get_data()
+
+    # convert date column to string 
+    covid['Reported_Date'] = covid['Reported_Date'].apply(str)
+    covid['Reported_Date']= covid['Reported_Date'].str.slice(0, 10)
+
+    # check the date format 
+    try:
+        datetime.datetime.strptime(startDate, '%Y-%m-%d')
+    except ValueError:
+        raise ValueError("Incorrect date format, should be YYYY-MM-DD")
+    try:
+        datetime.datetime.strptime(endDate, '%Y-%m-%d')
+    except ValueError:
+        raise ValueError("Incorrect date format, should be YYYY-MM-DD")
 
     # check argument validity
     if not(isinstance(startDate, str)):
@@ -133,16 +147,10 @@ def plotLineByDate(startDate, endDate, region='all'):
     elif not(len(region) > 0):
         raise ValueError(
             'Invalid argument value: region cannot be an empty list')
-
-    # check the date format
-    try:
-        datetime.datetime.strptime(startDate, '%Y-%m-%d')
-    except ValueError:
-        raise ValueError("Incorrect data format, should be YYYY-MM-DD")
-    try:
-        datetime.datetime.strptime(endDate, '%Y-%m-%d')
-    except ValueError:
-        raise ValueError("Incorrect data format, should be YYYY-MM-DD")
+    elif not(len(startDate) == 10 and len(endDate) == 10):
+        raise ValueError('Invalid argument value: startDate and endDate format is ' \
+                         '`YYYY-MM-DD` without spaces.'
+                        )
 
     # filter the data
     if region == 'all':
