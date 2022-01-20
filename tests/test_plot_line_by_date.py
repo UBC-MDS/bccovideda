@@ -1,4 +1,3 @@
-# from bccovideda.bccovideda import plot_line_by_date
 from bccovideda.plot_line_by_date import plot_line_by_date
 
 import pytest 
@@ -12,9 +11,7 @@ def test_type_error():
     None
         The test should pass and no asserts should be displayed.
     """
-    # Calling helper function to create data
-    pd.read_csv("tests/case_data_sample.csv")
-
+    
     # Test the TypeError is correctly raised when the type of
     # arguments is incorrect
     with pytest.raises(TypeError):
