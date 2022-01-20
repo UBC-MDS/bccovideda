@@ -1,22 +1,21 @@
 import pandas as pd
 from datetime import date
+from bccovideda.bccovideda import get_data
 
-def show_summary_stat(df, startDate, endDate):
+def show_summary_stat(startDate, endDate):
     """
     Shows summary statistics for the Covid19 cases in BC for the period
     specified by startDate and endDate (format: YYYY-MM-DD).
 
     Parameters
     ----------
-    df        : pandas.DataFrame
-                the dataframe containing the covid data with the columns:
-                "Reported_Date","HA","Sex","Age_Group","Classification_Reported"
     startDate : string
                 the start date of the period 
                 (no earlier than '2020-01-29')
     endDate   : string
                 the end date of the period 
                 (no later than today)
+
 
     Returns
     -------
@@ -30,14 +29,10 @@ def show_summary_stat(df, startDate, endDate):
 
     Examples
     -------
-    >>> df = get_data()
-    >>> show_summary_stat(df, "2022-01-01", "2022-01-13")
+    >>> show_summary_stat("2022-01-01", "2022-01-13")
 
     """
     # input validation
-
-    if not isinstance(df, pd.DataFrame):
-        raise TypeError("'df' should be of type pandas.DataFrame.")
     if not isinstance(startDate, str):
         raise TypeError("'startDate' should be of type 'str'.")
     if not isinstance(endDate, str):
@@ -54,6 +49,9 @@ def show_summary_stat(df, startDate, endDate):
     if end_dt > date.today():
         raise ValueError("endDate should not be later than today")
 
+
+    # download data 
+    df = get_data()
 
     mask = (df["Reported_Date"] >= startDate) & (df["Reported_Date"] <= endDate)
     df = df.loc[mask]
