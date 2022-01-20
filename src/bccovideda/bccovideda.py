@@ -3,6 +3,8 @@ import requests
 import os
 import pandas as pd
 import altair as alt
+import datetime
+alt.data_transformers.enable('data_server')
 
 
 def getData(url="http://www.bccdc.ca/Health-Info-Site/Documents/BCCDC_COVID19_Dashboard_Case_Details.csv", out_folder="data/raw"):
@@ -26,7 +28,6 @@ def getData(url="http://www.bccdc.ca/Health-Info-Site/Documents/BCCDC_COVID19_Da
     --------
     >>> getData()
     """
-
 
 def showSummaryStat(startDate, endDate):
     """
@@ -72,9 +73,11 @@ def plotLineByDate(startDate, endDate, region='all'):
     endDate   : string
                 the end date of the period 
                 (no later than today)
-    region    : string
-                Available regions - Fraser, Vancouver Coastal, Vancouver Island, Interior,
-                Northern, Out of Canada, all(default)
+    region    : list or str = 'all'
+                Default value is string 'all' - displaying all regions.
+                Other available values: combination of list of strings
+                from available regions - Fraser, Vancouver Coastal, Vancouver Island, 
+                Interior, Northern, Out of Canada
 
     Returns
     -------
@@ -84,8 +87,72 @@ def plotLineByDate(startDate, endDate, region='all'):
     Examples
     --------
     >>> bccovideda.plotLineByDate("2021-01-01", "2021-12-31")
-    >>> bccovideda.plotLineByDate("2021-01-01", "2021-12-31", region = 'Fraser')
+    >>> bccovideda.plotLineByDate("2021-01-01", "2021-12-31", region = ['Fraser'])
     """
+
+    covid = getData()
+
+       # check argument validity
+    if not(isinstance(startDate, str)):
+        raise TypeError('Invalid argument type: startDate must be a string.')
+    elif not(isinstance(endDate, str)):
+        raise TypeError('Invalid argument type: endDate must be a string.')
+    elif not(isinstance(region, list) or region == 'all'):
+        raise TypeError('Invalid argument type: region must be a list or have a value `"all"`.')
+        
+    # check arguments value     
+    elif not(endDate <= covid.iloc[-1:, 0].values[0]):
+        raise ValueError('Invalid argument value: endDate cannot be later ' \
+                         'than the day the package is called.')
+    elif not(startDate >= covid.iloc[0:, 0].values[0]):
+        raise ValueError('Invalid argument value: startDate cannot be earlier ' \
+                         'than the day the first case was recorded.')
+    elif not(startDate < endDate):
+        raise ValueError('Invalid argument value: endDate cannot be earlier ' \
+                         'than the startDate.')
+    elif not(set(region).issubset(set(pd.unique(covid['HA']))) or region == 'all'):
+        raise ValueError('Invalid argument value: region must be valid BC region - ' \
+                         'Either combination of `Fraser, Vancouver Coastal, Vancouver Island, ' \
+                         'Interior, Northern, Out of Canada` or `all`')
+    elif not(len(region) > 0):
+        raise ValueError('Invalid argument value: region cannot be an empty list')
+        
+    
+    # check the date format 
+    try:
+        datetime.datetime.strptime(startDate, '%Y-%m-%d')
+    except ValueError:
+        raise ValueError("Incorrect data format, should be YYYY-MM-DD")
+    try:
+        datetime.datetime.strptime(endDate, '%Y-%m-%d')
+    except ValueError:
+        raise ValueError("Incorrect data format, should be YYYY-MM-DD")
+    
+    # filter the data 
+    if region == 'all':
+        mask = ((covid["Reported_Date"] > startDate) &
+            (covid["Reported_Date"] <= endDate))
+    else:
+        mask = ((covid["Reported_Date"] > startDate) &
+            (covid["Reported_Date"] <= endDate) &
+            covid["HA"].isin(region))
+        
+    # keep the filtered data 
+    temp = covid.loc[mask]
+    
+    # plot the line chart
+    plot = (alt.Chart(temp, 
+                      title = "Number of COVID19 cases over time")
+            .mark_line().encode(
+                x = alt.X("Reported_Date", 
+                          title = "Date"),
+                y = alt.Y("count()",
+                          title = "Number of Cases"),
+                color = alt.Color("HA", 
+                                  title = 'Region'))
+           )
+    
+    return plot
 
 
 def plotHistByCond(startDate, endDate, condition):
