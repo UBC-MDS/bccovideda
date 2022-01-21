@@ -2,6 +2,7 @@ import pandas as pd
 import altair as alt
 import datetime
 alt.data_transformers.enable('data_server')
+from bccovideda.bccovideda import get_data
 
 
 def plot_hist_by_cond(startDate, endDate, condition):
@@ -29,7 +30,43 @@ def plot_hist_by_cond(startDate, endDate, condition):
     --------
     >>> bccovideda.plotHistByCond("2021-01-01", "2021-12-31", "Age")
     """
-    covid = getData()
+
+    # test input type
+    if not isinstance(startDate, str):
+        raise TypeError("'startDate' should be string.")
+    if not isinstance(endDate, str):
+        raise TypeError("'endDate' should be string.")
+    if not isinstance(condition, str):
+        raise TypeError("'endDate' should be string.")
+
+
+    # test input format 
+    try:
+        datetime.datetime.strptime(startDate, '%Y-%m-%d')
+    except ValueError:
+        raise ValueError("Incorrect date format, should be YYYY-MM-DD")
+    try:
+        datetime.datetime.strptime(endDate, '%Y-%m-%d')
+    except ValueError:
+        raise ValueError("Incorrect date format, should be YYYY-MM-DD")
+
+
+    covid = get_data()
+    
+
+    # test input value
+    if not(endDate <= covid.iloc[-1:, 0].values[0]):
+        raise ValueError('Invalid argument value: endDate cannot be later '
+                         'than the day the package is called.')
+    if not(startDate >= covid.iloc[0:, 0].values[0]):
+        raise ValueError('Invalid argument value: startDate cannot be earlier '
+                         'than the day the first case was recorded.')
+    if not(startDate < endDate):
+        raise ValueError('Invalid argument value: endDate cannot be earlier '
+                         'than the startDate.')
+    if not(condition == "Age" or "Region"):
+        raise ValueError('Invalid argument value: condition should be either '
+                         '"Age" or "Region"')
 
     mask = (covid["Reported_Date"] > startDate) & (covid["Reported_Date"] <= endDate)
     temp = covid.loc[mask]
