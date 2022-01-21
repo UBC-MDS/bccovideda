@@ -1,6 +1,6 @@
 import pandas as pd
 import altair as alt
-from datetime import date
+#from datetime import date
 import datetime
 from bccovideda.bccovideda import get_data
 alt.data_transformers.enable('data_server')
@@ -52,7 +52,8 @@ def plot_hist_by_cond(startDate, endDate, condition):
 
 
     covid = get_data()
-    
+
+""""    
     start_dt = date.fromisoformat(startDate)
     end_dt = date.fromisoformat(endDate)
     earliest_dt = date.fromisoformat("2020-01-29")
@@ -65,7 +66,7 @@ def plot_hist_by_cond(startDate, endDate, condition):
         raise ValueError("startDate should not be earlier than 2020-01-29")
     if end_dt > date.today():
         raise ValueError("endDate should not be later than today")
-
+"""
     mask = (covid["Reported_Date"] > startDate) & (covid["Reported_Date"] <= endDate)
     temp = covid.loc[mask]
 
