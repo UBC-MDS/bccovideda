@@ -1,6 +1,6 @@
 import pandas as pd
 import altair as alt
-import datetime import date
+from datetime import date
 alt.data_transformers.enable('data_server')
 from bccovideda.bccovideda import get_data
 
