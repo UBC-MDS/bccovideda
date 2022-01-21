@@ -1,6 +1,7 @@
 import pandas as pd
 from datetime import date
-from bccovideda.bccovideda import get_data
+from bccovideda.get_data import get_data
+
 
 def show_summary_stat(startDate, endDate):
     """
@@ -49,11 +50,11 @@ def show_summary_stat(startDate, endDate):
     if end_dt > date.today():
         raise ValueError("endDate should not be later than today")
 
-
-    # download data 
+    # download data
     df = get_data()
 
-    mask = (df["Reported_Date"] >= startDate) & (df["Reported_Date"] <= endDate)
+    mask = (df["Reported_Date"] >= startDate) & (
+        df["Reported_Date"] <= endDate)
     df = df.loc[mask]
 
     # return None if it is an empty dataframe
@@ -116,4 +117,4 @@ def show_summary_stat(startDate, endDate):
         }
     )
 
-    return summary_df 
+    return summary_df

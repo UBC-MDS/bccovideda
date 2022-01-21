@@ -1,5 +1,5 @@
 
-from bccovideda.bccovideda import get_data
+from bccovideda.get_data import get_data
 import pandas as pd
 import altair as alt
 import datetime
@@ -39,11 +39,11 @@ def plot_line_by_date(startDate, endDate, region='all'):
 
     covid = get_data()
 
-    # convert date column to string 
+    # convert date column to string
     covid['Reported_Date'] = covid['Reported_Date'].apply(str)
-    covid['Reported_Date']= covid['Reported_Date'].str.slice(0, 10)
+    covid['Reported_Date'] = covid['Reported_Date'].str.slice(0, 10)
 
-    # check the date format 
+    # check the date format
     try:
         datetime.datetime.strptime(startDate, '%Y-%m-%d')
     except ValueError:
@@ -80,9 +80,9 @@ def plot_line_by_date(startDate, endDate, region='all'):
         raise ValueError(
             'Invalid argument value: region cannot be an empty list')
     elif not(len(startDate) == 10 and len(endDate) == 10):
-        raise ValueError('Invalid argument value: startDate and endDate format is ' \
+        raise ValueError('Invalid argument value: startDate and endDate format is '
                          '`YYYY-MM-DD` without spaces.'
-                        )
+                         )
 
     # filter the data
     if region == 'all':

@@ -2,7 +2,8 @@ import pytest
 import pandas as pd
 import numpy as np
 from bccovideda.show_summary_stat import show_summary_stat
-from bccovideda.bccovideda import get_data
+from bccovideda.get_data import get_data
+
 
 def read_sample_data():
     df = pd.read_csv("tests/case_data_sample.csv")
@@ -29,26 +30,40 @@ def test_show_summary_stat():
 
     df_summary = show_summary_stat("2020-01-29", "2020-03-31")
     # test return type of normal case
-    assert isinstance(df_summary, pd.DataFrame), "Should return panda.DataFrame"
+    assert isinstance(
+        df_summary, pd.DataFrame), "Should return panda.DataFrame"
     assert len(df_summary) == 1, "Should return only one row"
     assert df_summary.size == 15, "Should return 15 columns"
 
     # test return value of sample data
-    assert type(df_summary.loc[0, "total_cases_count"])==np.int64, "Total count should be integer"
-    assert type(df_summary.loc[0, "max_daily_cases_count"])==np.int64, "Max daily count should be integer"
-    assert type(df_summary.loc[0, "min_daily_cases_count"])==np.int64, "Min dailycount should be integer"
-    assert type(df_summary.loc[0, "max_age_group_count"])==np.int64, "Max age group count should be integer"
-    assert type(df_summary.loc[0, "min_age_group_count"])==np.int64, "Min age group count should be integer"
-    assert type(df_summary.loc[0, "max_region_count"])==np.int64, "Max region count should be integer"
-    assert type(df_summary.loc[0, "min_region_count"])==np.int64, "Min count should be integer"
-    assert type(df_summary.loc[0, "latest_date"])==pd.Timestamp, "Latest date should be pandas Timestamp"
-    assert type(df_summary.loc[0, "max_date"])==pd.Timestamp, "Maximum date should be pandas Timestamp"
-    assert type(df_summary.loc[0, "min_date"])==pd.Timestamp, "Minimum date should be pandas Timestamp"
-    assert type(df_summary.loc[0, "max_age_group"])==str, "Maximum Age Group date should be string"
-    assert type(df_summary.loc[0, "min_age_group"])==str, "Minimum Age Group date should be string"
-    assert type(df_summary.loc[0, "max_region"])==str, "Maximum Region date should be string"
-    assert type(df_summary.loc[0, "min_region"])==str, "Minimum Region date should be string"
-
+    assert type(df_summary.loc[0, "total_cases_count"]
+                ) == np.int64, "Total count should be integer"
+    assert type(df_summary.loc[0, "max_daily_cases_count"]
+                ) == np.int64, "Max daily count should be integer"
+    assert type(df_summary.loc[0, "min_daily_cases_count"]
+                ) == np.int64, "Min dailycount should be integer"
+    assert type(df_summary.loc[0, "max_age_group_count"]
+                ) == np.int64, "Max age group count should be integer"
+    assert type(df_summary.loc[0, "min_age_group_count"]
+                ) == np.int64, "Min age group count should be integer"
+    assert type(df_summary.loc[0, "max_region_count"]
+                ) == np.int64, "Max region count should be integer"
+    assert type(df_summary.loc[0, "min_region_count"]
+                ) == np.int64, "Min count should be integer"
+    assert type(df_summary.loc[0, "latest_date"]
+                ) == pd.Timestamp, "Latest date should be pandas Timestamp"
+    assert type(df_summary.loc[0, "max_date"]
+                ) == pd.Timestamp, "Maximum date should be pandas Timestamp"
+    assert type(df_summary.loc[0, "min_date"]
+                ) == pd.Timestamp, "Minimum date should be pandas Timestamp"
+    assert type(df_summary.loc[0, "max_age_group"]
+                ) == str, "Maximum Age Group date should be string"
+    assert type(df_summary.loc[0, "min_age_group"]
+                ) == str, "Minimum Age Group date should be string"
+    assert type(df_summary.loc[0, "max_region"]
+                ) == str, "Maximum Region date should be string"
+    assert type(df_summary.loc[0, "min_region"]
+                ) == str, "Minimum Region date should be string"
 
 
 def test_show_summary_stat_input():
