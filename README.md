@@ -62,7 +62,7 @@ Interested in contributing? Check out the contributing guidelines. Please note t
 
 Group 25 Contributors:
 - Lianna Hovhannisyan: @liannah
-- John Lee: @max780228
+- John Lee: @johnwslee
 - Vadim Taskaev: @vtaskaev1
 - Vanessa Yuen: @imtvwy
 
