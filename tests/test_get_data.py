@@ -1,5 +1,5 @@
-from bccovideda import bccovideda
-from bccovideda.bccovideda import get_data
+#from bccovideda import bccovideda
+from bccovideda.get_data import get_data
 
 import pandas as pd
 import os

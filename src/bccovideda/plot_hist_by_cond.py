@@ -2,9 +2,10 @@ import pandas as pd
 import altair as alt
 import datetime
 from datetime import date
-from bccovideda.bccovideda import get_data
+from bccovideda.get_data import get_data
 alt.data_transformers.enable('data_server')
 alt.renderers.enable('html')
+
 
 def plot_hist_by_cond(startDate, endDate, condition):
     """
@@ -40,8 +41,7 @@ def plot_hist_by_cond(startDate, endDate, condition):
     if not isinstance(condition, str):
         raise TypeError("'endDate' should be string.")
 
-
-    # test input format 
+    # test input format
     try:
         datetime.datetime.strptime(startDate, '%Y-%m-%d')
     except ValueError:
@@ -51,13 +51,11 @@ def plot_hist_by_cond(startDate, endDate, condition):
     except ValueError:
         raise ValueError("Incorrect date format, should be YYYY-MM-DD")
 
-
     covid = get_data()
 
     start_dt = date.fromisoformat(startDate)
     end_dt = date.fromisoformat(endDate)
     earliest_dt = date.fromisoformat("2020-01-29")
-
 
     # test input value
     if start_dt > end_dt:
@@ -67,8 +65,8 @@ def plot_hist_by_cond(startDate, endDate, condition):
     if end_dt > date.today():
         raise ValueError("endDate should not be later than today")
 
-
-    mask = (covid["Reported_Date"] > startDate) & (covid["Reported_Date"] <= endDate)
+    mask = (covid["Reported_Date"] > startDate) & (
+        covid["Reported_Date"] <= endDate)
     temp = covid.loc[mask]
 
     age_group_label = [
