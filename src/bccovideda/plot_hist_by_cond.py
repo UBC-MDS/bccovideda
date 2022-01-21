@@ -53,20 +53,18 @@ def plot_hist_by_cond(startDate, endDate, condition):
 
     covid = get_data()
     
+    start_dt = date.fromisoformat(startDate)
+    end_dt = date.fromisoformat(endDate)
+    earliest_dt = date.fromisoformat("2020-01-29")
+
 
     # test input value
-    if not(endDate <= covid.iloc[-1:, 0].values[0]):
-        raise ValueError('Invalid argument value: endDate cannot be later '
-                         'than the day the package is called.')
-    if not(startDate >= covid.iloc[0:, 0].values[0]):
-        raise ValueError('Invalid argument value: startDate cannot be earlier '
-                         'than the day the first case was recorded.')
-    if not(startDate < endDate):
-        raise ValueError('Invalid argument value: endDate cannot be earlier '
-                         'than the startDate.')
-    if not(condition == "Age" or "Region"):
-        raise ValueError('Invalid argument value: condition should be either '
-                         '"Age" or "Region"')
+    if start_dt > end_dt:
+        raise ValueError("startDate should not be later than endDate")
+    if start_dt < earliest_dt:
+        raise ValueError("startDate should not be earlier than 2020-01-29")
+    if end_dt > date.today():
+        raise ValueError("endDate should not be later than today")
 
     mask = (covid["Reported_Date"] > startDate) & (covid["Reported_Date"] <= endDate)
     temp = covid.loc[mask]
