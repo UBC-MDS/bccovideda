@@ -55,3 +55,19 @@ def test_input_data():
     
   with pytest.raises(ValueError):
     plot_hist_by_cond("2021-01-01", "2021-12-31", "area")
+    
+def test_plot_results():
+    """
+    Check if the returned plot is correct
+    
+    """
+    plot_hist_age = plot_hist_by_cond('2021-10-28', '2021-12-28', "Age")
+    plot_hist_region = plot_hist_by_cond('2021-10-28', '2021-12-28', "Region")
+    assert str(type(plot_hist_age)) == "<class 'altair.vegalite.v4.api.Chart'>"
+    assert str(type(plot_hist_region)) == "<class 'altair.vegalite.v4.api.Chart'>"
+    assert plot_hist_age.encoding.x.shorthand == 'count()', 'x_axis should be mapped to the x axis'
+    assert plot_hist_age.encoding.y.shorthand == 'Age_Group', 'y_axis should be mapped to the y axis'
+    assert plot_hist_region.encoding.x.shorthand == 'count()', 'x_axis should be mapped to the x axis'
+    assert plot_hist_region.encoding.y.shorthand == 'HA', 'y_axis should be mapped to the y axis'
+    assert plot_hist_age.mark == 'bar', 'mark should be a bar'
+    assert plot_hist_region.mark == 'bar', 'mark should be a bar'
