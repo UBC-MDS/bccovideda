@@ -1,9 +1,12 @@
+import pytest
 import pandas as pd
 import altair as alt
 import datetime
-alt.data_transformers.enable('data_server')
+from datetime import date
 from bccovideda.bccovideda import get_data
 from bccovideda.plot_hist_by_cond import plot_hist_by_cond
+alt.data_transformers.enable('data_server')
+alt.renderers.enable('html')
 
 def test_input_data():
   """
@@ -16,14 +19,9 @@ def test_input_data():
   """
 
   # test input type
-  with pytest.raises(TypeError):
-    plot_hist_by_cond(2021-01-01, 2021-12-31, Age)
-    
-  with pytest.raises(TypeError):
+
+  with pytest.raises(NameError):
     plot_hist_by_cond("2021-01-01", "2021-12-31", Region)
-    
-  with pytest.raises(TypeError):
-    plot_hist_by_cond(2021-01-01, 2021-12-31, "Age")
     
   with pytest.raises(TypeError):
     plot_hist_by_cond("2021-01-01", 2021-12-31, "Region")

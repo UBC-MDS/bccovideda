@@ -4,6 +4,7 @@ import datetime
 from datetime import date
 from bccovideda.bccovideda import get_data
 alt.data_transformers.enable('data_server')
+alt.renderers.enable('html')
 
 def plot_hist_by_cond(startDate, endDate, condition):
     """
@@ -80,13 +81,17 @@ def plot_hist_by_cond(startDate, endDate, condition):
         'Northern', 'Out of Canada'
     ]
 
+    plot = 0   # plot initialized to prevent UnboundLocalError
+
     if condition == "Age":
         plot = alt.Chart(temp, title="Number of Cases by Age Group").mark_bar().encode(
             y=alt.Y("Age_Group", sort=age_group_label, title="Age Group"),
             x=alt.X("count()", title="Number of Cases"))
-    if condition == "Region":
+    elif condition == "Region":
         plot = alt.Chart(temp, title="Number of Cases by Region").mark_bar().encode(
             y=alt.Y("HA", sort=region_label, title="Region"),
             x=alt.X("count()", title="Number of Cases"))
+    else:
+        raise ValueError('Condition should be "Age" or "Region"')
 
     return plot
