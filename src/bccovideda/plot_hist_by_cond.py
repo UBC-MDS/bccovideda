@@ -1,9 +1,9 @@
 import pandas as pd
 import altair as alt
 from datetime import date
-alt.data_transformers.enable('data_server')
+import datetime
 from bccovideda.bccovideda import get_data
-
+alt.data_transformers.enable('data_server')
 
 def plot_hist_by_cond(startDate, endDate, condition):
     """
