@@ -11,10 +11,19 @@ The British Columbia Center for Disease Control (BCCDC) manages a range of provi
 
 ## Installation
 
-This package can be installed from PyPI using the terminal command:
+In order to install this package
+
+1. clone this GitHub Repo
 ```bash
-$ pip install bccovideda
+$ git clone https://github.com/UBC-MDS/bccovideda.git
 ```
+2. install package from GitHub Repo
+```bash
+$ pip install git+https://github.com/UBC-MDS/bccovideda
+
+```
+
+Note: If this package is to be installed in virtual environment, `poetry install` is required to run pytest.
 
 ## Package Functions 
 
