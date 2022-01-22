@@ -1,7 +1,5 @@
 # bccovideda
 
-**Milestone1 Link**: <https://github.com/UBC-MDS/bc_covid_simple_eda>
-
 **Authors**:  Lianna Hovhannisyan, John Lee, Vadim Taskaev, Vanessa Yuen
 
 The British Columbia Center for Disease Control (BCCDC) manages a range of provincial programs and clinics that contribute to public health and help control the spread of disease in BC. It administers and distributes the latest daily data on COVID-19 in British Columbia, which it provides in csv format along case-, lab- and regional-specific features as well as in comprehensive ArcGIS format via the [COVID-19 webpage](http://www.bccdc.ca/health-info/diseases-conditions/covid-19/data) (under "Download the data"). This package leverages daily case-specific COVID-19 data, allowing users to conveniently download the latest case data, and - per specified date range interval - compute several key statistics, visualize time series progression along age-related and regional parameters, and generate exploratory data analysis in the form of histogram figures supporting on-demand analysis. COVID-19 case detail parameters extracted using this package: 
@@ -34,8 +32,6 @@ $ pip install bccovideda
 
 
 ## Usage
-
-- TODO
 
 ## Role within Python Ecosystem
 
