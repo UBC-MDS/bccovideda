@@ -117,4 +117,4 @@ def show_summary_stat(startDate, endDate):
         }
     )
 
-    return summary_df
+    return summary_df.T

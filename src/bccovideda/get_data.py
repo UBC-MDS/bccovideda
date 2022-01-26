@@ -42,9 +42,4 @@ def get_data(url="http://www.bccdc.ca/Health-Info-Site/Documents/BCCDC_COVID19_D
     cases_df = pd.read_csv("data/raw/case_data.csv",
                            parse_dates=['Reported_Date'])
 
-    cases_sample = pd.read_csv(
-        "data/sample/case_data_sample.csv", parse_dates=['Reported_Date'])
-    cases_sample.iloc[:100, 1:].to_csv(
-        "data/sample/case_data_sample_noID.csv", index=False)
-
     return cases_df
