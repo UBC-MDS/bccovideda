@@ -13,19 +13,24 @@ The British Columbia Center for Disease Control (BCCDC) manages a range of provi
 
 ## Installation
 
-In order to install this package
-
-1. clone this GitHub Repo
+`bccovideda` can be installed from PyPI using the following terminal command:
 ```bash
-$ git clone https://github.com/UBC-MDS/bccovideda.git
+$ pip install bccovideda
 ```
-2. install package from GitHub Repo
-```bash
-$ pip install git+https://github.com/UBC-MDS/bccovideda
 
-```
+`bccovideda` can be used to download and compute summary statistics, generate exploratory data analysis histogram plots, and plot time series chart data as follows:
+```python
+from bccovideda.get_data import get_data
+from bccovideda.show_summary_stat import show_summary_stat
+from bccovideda.plot_hist_by_cond import plot_hist_by_cond
+from bccovideda.plot_line_by_date import plot_line_by_date
 
 Note: If this package is to be installed in virtual environment, `poetry install` is required to run pytest.
+
+bccovideda.show_summary_stat("2022-01-01", "2022-01-13")
+bccovideda.plotHistByCond("2021-01-01", "2021-12-31", "Age")
+bccovideda.plotLineByDate("2021-01-01", "2021-12-31", region = ['Fraser'])
+```
 
 ## Package Functions 
 
