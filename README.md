@@ -1,5 +1,6 @@
 [![ci-cd](https://github.com/UBC-MDS/bccovideda/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/UBC-MDS/bccovideda/actions/workflows/ci-cd.yml)
 [![codecov](https://codecov.io/github/UBC-MDS/bccovideda/branch/main/graph/badge.svg)](https://codecov.io/github/UBC-MDS/bccovideda)
+[![Documentation Status](https://readthedocs.org/projects/bccovideda/badge/?version=latest)](https://bccovideda.readthedocs.io/en/latest/?badge=latest)
 # bccovideda
 
 **Authors**:  Lianna Hovhannisyan, John Lee, Vadim Taskaev, Vanessa Yuen
