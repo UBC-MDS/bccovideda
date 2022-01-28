@@ -13,9 +13,23 @@ The British Columbia Center for Disease Control (BCCDC) manages a range of provi
 
 ## Installation
 
-This package can be installed from PyPI using the terminal command:
+`bccovideda` can be installed from PyPI using the following terminal command:
 ```bash
 $ pip install bccovideda
+```
+
+`bccovideda` can be used to download and compute summary statistics, generate exploratory data analysis histogram plots, and plot time series chart data as follows:
+```python
+from bccovideda.get_data import get_data
+from bccovideda.show_summary_stat import show_summary_stat
+from bccovideda.plot_hist_by_cond import plot_hist_by_cond
+from bccovideda.plot_line_by_date import plot_line_by_date
+
+show_summary_stat("2022-01-01", "2022-01-13")
+
+bccovideda.plotHistByCond("2021-01-01", "2021-12-31", "Age")
+
+bccovideda.plotLineByDate("2021-01-01", "2021-12-31", region = ['Fraser'])
 ```
 
 ## Package Functions 
