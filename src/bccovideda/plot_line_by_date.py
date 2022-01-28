@@ -33,8 +33,8 @@ def plot_line_by_date(startDate, endDate, region='all'):
 
     Examples
     --------
-    >>> bccovideda.plotLineByDate("2021-01-01", "2021-12-31")
-    >>> bccovideda.plotLineByDate("2021-01-01", "2021-12-31", region = ['Fraser'])
+    >>> plot_line_by_date("2021-01-01", "2021-12-31")
+    >>> plot_line_by_date("2021-01-01", "2021-12-31", region = ['Fraser'])
     """
 
     covid = get_data()

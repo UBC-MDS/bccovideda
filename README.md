@@ -1,6 +1,6 @@
+[![ci-cd](https://github.com/UBC-MDS/bccovideda/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/UBC-MDS/bccovideda/actions/workflows/ci-cd.yml)
+[![codecov](https://codecov.io/github/UBC-MDS/bccovideda/branch/main/graph/badge.svg)](https://codecov.io/github/UBC-MDS/bccovideda)
 # bccovideda
-
-**Milestone1 Link**: <https://github.com/UBC-MDS/bc_covid_simple_eda>
 
 **Authors**:  Lianna Hovhannisyan, John Lee, Vadim Taskaev, Vanessa Yuen
 
@@ -34,22 +34,20 @@ bccovideda.plotLineByDate("2021-01-01", "2021-12-31", region = ['Fraser'])
 
 ## Package Functions 
 
-- `getData()`
+- `get_data()`
   - This function downloads the latest detailed daily case-specific COVID-19 from BCCDC's dedicated [COVID-19 homepage](http://www.bccdc.ca/health-info/diseases-conditions/covid-19/data). It returns a dataframe containing the extracted raw data. 
 
-- `showSummaryStat()`
+- `show_summary_stat()`
   - This function computes summary statistics from the available case-specific parameters, such as age-related and regional aggregate metrics. It returns a dataframe listing key identified summary statistics specified per the time interval queried. 
 
-- `plotLineByDate()`
+- `plot_line_by_date()`
   - This function returns a line chart plot of daily case counts, based on parameters and grouping selected by the user, per the time interval queried.
 
-- `plotHistByCond()`
+- `plot_hist_by_cond()`
   - This function returns a histogram plot based on parameters and grouping selected by the user, per the time interval queried, allowing for on-demand exploratory data analysis. 
 
 
 ## Usage
-
-- TODO
 
 ## Role within Python Ecosystem
 

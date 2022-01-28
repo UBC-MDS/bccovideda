@@ -30,7 +30,7 @@ def plot_hist_by_cond(startDate, endDate, condition):
 
     Examples
     --------
-    >>> bccovideda.plotHistByCond("2021-01-01", "2021-12-31", "Age")
+    >>> plot_hist_by_cond("2021-01-01", "2021-12-31", "Age")
     """
 
     # test input type

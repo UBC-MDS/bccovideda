@@ -2,11 +2,8 @@ name: ci-cd
 
 on:
   push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
+
 
 jobs:
   ci:
@@ -47,17 +44,22 @@ jobs:
     - uses: actions/setup-python@v2
       with:
         python-version: 3.9
-    # Step 3. Check-out repository so we can access its contents
+        
+    # Step 3. Check-out repository so we can access its contents (disable main branch protection)
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    # Step 4. Use PSR to make release
+      
+          
+    # Step 3. Use PSR to make release
     - name: Python Semantic Release
       run: |
           pip install python-semantic-release
           git config user.name github-actions
           git config user.email github-actions@github.com
           semantic-release publish
+    
+        
     # Step 5. Publish to TestPyPI
     - uses: pypa/gh-action-pypi-publish@release/v1
       with:
@@ -65,6 +67,7 @@ jobs:
         password: ${{ secrets.TEST_PYPI_API_TOKEN }}
         repository_url: https://test.pypi.org/legacy/
         skip_existing: true
+        
     # Step 6. Test install from TestPyPI
     - name: Test install from TestPyPI
       run: |
@@ -72,6 +75,7 @@ jobs:
           --index-url https://test.pypi.org/simple/ \
           --extra-index-url https://pypi.org/simple \
           bccovideda
+          
     # Step 7. Publish to PyPI
     - uses: pypa/gh-action-pypi-publish@release/v1
       with:
