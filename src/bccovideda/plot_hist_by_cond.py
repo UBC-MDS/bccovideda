@@ -3,8 +3,6 @@ import altair as alt
 import datetime
 from datetime import date
 from bccovideda.get_data import get_data
-alt.data_transformers.enable('data_server')
-alt.renderers.enable('html')
 
 
 def plot_hist_by_cond(startDate, endDate, condition):

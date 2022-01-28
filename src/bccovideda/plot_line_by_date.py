@@ -3,7 +3,6 @@ from bccovideda.get_data import get_data
 import pandas as pd
 import altair as alt
 import datetime
-alt.data_transformers.enable('data_server')
 
 
 def plot_line_by_date(startDate, endDate, region='all'):
