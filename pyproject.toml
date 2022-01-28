@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bccovideda"
-version = "0.1.0"
+version = "1.0.0"
 description = "A package to download BC covid data and create simple EDA"
 authors = ["MDS 2021 DSCI 524 Group 25"]
 license = "MIT"
@@ -18,7 +18,23 @@ ipykernel = "^6.7.0"
 pytest = "^6.2.5"
 pytest-cov = "^3.0.0"
 jupyter = "^1.0.0"
+codecov = "^2.1.12"
+Sphinx = "^4.4.0"
+python-semantic-release = "^7.24.0"
+myst-nb = "^0.13.1"
+sphinx-autoapi = "^1.8.4"
+sphinx-rtd-theme = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+version_variable = "pyproject.toml:version" # version location
+branch = "main"                             # branch to make releases of
+changelog_file = "CHANGELOG.md"             # changelog file
+build_command = "pip install poetry && poetry build"  # build dists
+dist_path = "dist/"                         # where to put dists
+upload_to_pypi = false                      # don't auto-upload to PyPI
+remove_dist = false                         # don't remove dists
+patch_without_tag = "true"                  # always bump version on CD, even without angular commit (default is patch)
