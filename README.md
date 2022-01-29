@@ -47,14 +47,13 @@ from bccovideda.plot_line_by_date import plot_line_by_date
 ```python
 get_data()
 ```
+<img src="https://github.com/UBC-MDS/bccovideda/raw/main/img/data.png" height="400">
 
-!["Data"](https://github.com/UBC-MDS/bccovideda/raw/main/img/data.png)
 
 ```python
 show_summary_stat("2022-01-01", "2022-01-13")
 ```
-
-!["Summary"](https://github.com/UBC-MDS/bccovideda/raw/main/img/summary.png)
+<img src="https://github.com/UBC-MDS/bccovideda/raw/main/img/summary.png" height="500">
 
 ```python
 plot_hist_by_cond("2021-01-01", "2021-01-30", "Age")
@@ -65,8 +64,9 @@ plot_hist_by_cond("2021-01-01", "2021-01-30", "Age")
 
 ```python
 plot_line_by_date("2021-01-01", "2021-01-30")
-!["Line"](https://github.com/UBC-MDS/bccovideda/raw/main/img/plot_line.png)
 ```
+!["Line"](https://github.com/UBC-MDS/bccovideda/raw/main/img/plot_line.png)
+
 
 ## Role within Python Ecosystem
 
