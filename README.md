@@ -19,20 +19,6 @@ The British Columbia Center for Disease Control (BCCDC) manages a range of provi
 $ pip install bccovideda
 ```
 
-`bccovideda` can be used to download and compute summary statistics, generate exploratory data analysis histogram plots, and plot time series chart data as follows:
-```python
-from bccovideda.get_data import get_data
-from bccovideda.show_summary_stat import show_summary_stat
-from bccovideda.plot_hist_by_cond import plot_hist_by_cond
-from bccovideda.plot_line_by_date import plot_line_by_date
-
-Note: If this package is to be installed in virtual environment, `poetry install` is required to run pytest.
-
-bccovideda.show_summary_stat("2022-01-01", "2022-01-13")
-bccovideda.plotHistByCond("2021-01-01", "2021-12-31", "Age")
-bccovideda.plotLineByDate("2021-01-01", "2021-12-31", region = ['Fraser'])
-```
-
 ## Package Functions 
 
 - `get_data()`
@@ -49,6 +35,20 @@ bccovideda.plotLineByDate("2021-01-01", "2021-12-31", region = ['Fraser'])
 
 
 ## Usage
+
+`bccovideda` can be used to download and compute summary statistics, generate exploratory data analysis histogram plots, and plot time series chart data as follows:
+```python
+from bccovideda.get_data import get_data
+from bccovideda.show_summary_stat import show_summary_stat
+from bccovideda.plot_hist_by_cond import plot_hist_by_cond
+from bccovideda.plot_line_by_date import plot_line_by_date
+```
+
+```python
+bccovideda.show_summary_stat("2022-01-01", "2022-01-13")
+bccovideda.plot_hist_by_cond("2021-01-01", "2021-12-31", "Age")
+bccovideda.plot_line_by_date("2021-01-01", "2021-12-31", region = ['Fraser'])
+```
 
 ## Role within Python Ecosystem
 
