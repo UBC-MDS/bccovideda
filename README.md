@@ -65,7 +65,7 @@ Given the relatively adequate accessibility of latest aggregate COVID-19 data co
 
 ## Documentation
 
-Documentation `bccovideda` can be found at [Read the Docs]()
+Documentation `bccovideda` can be found at [Read the Docs](https://bccovideda.readthedocs.io)
 
 ## Contributing
 
