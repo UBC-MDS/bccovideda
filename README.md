@@ -45,9 +45,27 @@ from bccovideda.plot_line_by_date import plot_line_by_date
 ```
 
 ```python
-bccovideda.show_summary_stat("2022-01-01", "2022-01-13")
-bccovideda.plot_hist_by_cond("2021-01-01", "2021-12-31", "Age")
-bccovideda.plot_line_by_date("2021-01-01", "2021-12-31", region = ['Fraser'])
+get_data()
+```
+
+!["Data"](https://github.com/UBC-MDS/bccovideda/raw/main/img/data.png)
+
+```python
+show_summary_stat("2022-01-01", "2022-01-13")
+```
+
+!["Summary"](https://github.com/UBC-MDS/bccovideda/raw/main/img/summary.png)
+
+```python
+plot_hist_by_cond("2021-01-01", "2021-01-30", "Age")
+```
+
+!["Histogram"](https://github.com/UBC-MDS/bccovideda/raw/main/img/plot_histogram.png)
+
+
+```python
+plot_line_by_date("2021-01-01", "2021-01-30")
+!["Line"](https://github.com/UBC-MDS/bccovideda/raw/main/img/plot_line.png)
 ```
 
 ## Role within Python Ecosystem
