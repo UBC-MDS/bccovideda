@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bccovideda"
-version = "1.0.7"
+version = "1.0.8"
 description = "A package to download BC covid data and create simple EDA"
 authors = ["MDS 2021 DSCI 524 Group 25"]
 license = "MIT"
