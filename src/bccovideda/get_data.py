@@ -32,7 +32,18 @@ def get_data(url="http://www.bccdc.ca/Health-Info-Site/Documents/BCCDC_COVID19_D
     if not os.path.exists(os.getcwd() + "/" + out_folder):
         os.makedirs(out_folder + "/")
 
+    if not isinstance(url, str):
+        raise TypeError("url provided is not of string type")
+
+    try:
+        req = requests.get(url)
+        if req.status_code == 200:
+            pass
+    except:
+        raise ValueError("url provided is invalid")
+
     req = requests.get(url)
+
     url_content = req.content
 
     csv_file = open("data/raw/case_data.csv", "wb")
