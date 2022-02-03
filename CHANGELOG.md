@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.1.0 (2022-02-03)
+### Feature
+* Get_data() exception handling ([`44092db`](https://github.com/UBC-MDS/bccovideda/commit/44092db701cfb705230254964a1a20699edea034))
+
 ## v1.0.10 (2022-01-29)
 
 
